@@ -16,8 +16,6 @@ const ComplianceForm: FC = () => {
           title: "Обращение отправленно!",
           description: "Номер вашего обращения: XXX",
           status: "success",
-          duration: 9000,
-          isClosable: true,
         });
       })
       .catch((e) => {
@@ -26,8 +24,6 @@ const ComplianceForm: FC = () => {
           title: "Ошибка!",
           description: e.message,
           status: "error",
-          duration: 9000,
-          isClosable: true,
         });
       });
   };
