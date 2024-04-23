@@ -5,7 +5,6 @@ import { Link as RouterLink } from "react-router-dom";
 const Navigation: FC = () => (
   <Box
     as="nav"
-    height="2rem"
     display="flex"
     justifyContent="flex-end"
     flexWrap="wrap"
