@@ -10,6 +10,9 @@ const Navigation: FC = () => (
     justifyContent="flex-end"
     gap="1rem"
   >
+    <Link as={RouterLink} to="/">
+      Создать обращение
+    </Link>
     <Link as={RouterLink} to="/check">
       Проверить статус обращения
     </Link>
