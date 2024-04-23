@@ -8,6 +8,7 @@ const Navigation: FC = () => (
     height="2rem"
     display="flex"
     justifyContent="flex-end"
+    flexWrap="wrap"
     gap="1rem"
   >
     <Link as={RouterLink} to="/">
