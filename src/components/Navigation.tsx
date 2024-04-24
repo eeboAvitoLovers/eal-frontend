@@ -16,8 +16,8 @@ const Navigation: FC = () => (
     <Link as={RouterLink} to="/check">
       Проверить статус обращения
     </Link>
-    <Link as={RouterLink} to="/login">
-      Войти
+    <Link as={RouterLink} to="/auth">
+      Аккаунт
     </Link>
   </Box>
 );

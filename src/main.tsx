@@ -1,15 +1,15 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "./utils/toasts";
 import routes from "./routes";
+import { AuthContextProvider } from "./context/authContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ChakraProvider>
+  <ChakraProvider>
+    <AuthContextProvider>
       <RouterProvider router={routes} />
-      <ToastContainer />
-    </ChakraProvider>
-  </React.StrictMode>
+    </AuthContextProvider>
+    <ToastContainer />
+  </ChakraProvider>
 );
