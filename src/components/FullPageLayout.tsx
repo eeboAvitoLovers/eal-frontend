@@ -14,7 +14,9 @@ const FullPageLayout: FC<FullPageLayoutProps> = ({ title, children }) => {
         <Navigation />
       </Box>
       <Container>
-        <Heading size="lg">{title}</Heading>
+        <Heading size="lg" pb="1.5rem">
+          {title}
+        </Heading>
         {children}
       </Container>
     </Box>

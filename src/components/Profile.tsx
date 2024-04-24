@@ -1,4 +1,4 @@
-import { Button, Heading, Text } from "@chakra-ui/react";
+import { Button, Stack, Text } from "@chakra-ui/react";
 import { useAuth } from "../context/authContext";
 import { logout } from "../api/auth";
 
@@ -10,14 +10,17 @@ const Profile = () => {
   };
 
   if (!auth) return null;
+  console.log(auth);
 
   return (
-    <>
-      <Heading size="md">{auth.email}</Heading>
-      <Text size="sm">{auth.isEngineer ? "Engineer" : "User"}</Text>
+    <Stack gap="1rem">
+      <Text size="sm">Электронная почта: {auth.email}</Text>
+      <Text size="sm">
+        Роль: {auth.isEngineer ? "Инженер" : "Пользователь"}
+      </Text>
       <Text size="sm">ID: {auth.id}</Text>
-      <Button onClick={handleLogout}>Logout</Button>
-    </>
+      <Button onClick={handleLogout}>Выйти из аккаунта</Button>
+    </Stack>
   );
 };
 

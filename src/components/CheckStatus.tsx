@@ -1,21 +1,21 @@
-import { Box, Button, Input } from "@chakra-ui/react";
+import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
 import { FC, FormEvent, useState } from "react";
-import messageApi from "../api/messages";
+import messageApi, { ComplianceInfo } from "../api/messages";
 import { toast } from "../utils/toasts";
 
 const CheckStatus: FC = () => {
   const [messageId, setMessageId] = useState("");
-  const [status, setStatus] = useState<string>();
+  const [info, setInfo] = useState<ComplianceInfo | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    setStatus(undefined);
+    setInfo(null);
     setLoading(true);
     messageApi
-      .checkStatus(messageId)
-      .then((res) => setStatus(res.data))
+      .getInfo(messageId)
+      .then((res) => setInfo(res.data))
       .catch((e) => {
         console.error(e);
         toast({
@@ -44,7 +44,19 @@ const CheckStatus: FC = () => {
       <Button isLoading={loading} colorScheme="blue" type="submit">
         Проверить
       </Button>
-      {status && <Box mb={2}>Cтатус: {status}</Box>}
+      {info && (
+        <Stack gap="0.5rem">
+          <Text>Номер обращения: {info.id}</Text>
+          <Text>Статус обращения: {info.solved ? "Решено" : "Не решено"}</Text>
+          <Text>Сообщение: {info.message}</Text>
+          <Text>
+            Дата создания: {new Date(info.create_at).toLocaleString()}
+          </Text>
+          <Text>
+            Дата обновления: {new Date(info.update_at).toLocaleString()}
+          </Text>
+        </Stack>
+      )}
     </Box>
   );
 };

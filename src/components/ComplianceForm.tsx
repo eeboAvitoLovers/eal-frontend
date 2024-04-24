@@ -1,20 +1,24 @@
-import { Textarea, Button, Box } from "@chakra-ui/react";
+import { Textarea, Button, Box, Text } from "@chakra-ui/react";
 import { FC, FormEvent, useState } from "react";
 import messageApi from "../api/messages";
 import { toast } from "../utils/toasts";
 
 const ComplianceForm: FC = () => {
   const [message, setMessage] = useState("");
+  const [createdMessageId, setCreatedMessageId] = useState<number>();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setCreatedMessageId(undefined);
+
     messageApi
       .sendMessage(message)
-      .then(() => {
+      .then((response) => {
         setMessage("");
+        setCreatedMessageId(response.data.id);
         toast({
           title: "Обращение отправленно!",
-          description: "Номер вашего обращения: XXX",
+          description: `Номер вашего обращения: ${response.data.id}`,
           status: "success",
         });
       })
@@ -46,6 +50,7 @@ const ComplianceForm: FC = () => {
       <Button colorScheme="blue" type="submit">
         Отправить
       </Button>
+      {createdMessageId && <Text>ID вашего обращения: {createdMessageId}</Text>}
     </Box>
   );
 };

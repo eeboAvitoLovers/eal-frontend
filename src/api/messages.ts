@@ -1,12 +1,21 @@
 import httpClient from "./httpClient";
 
+export type ComplianceInfo = {
+  id: number;
+  message: string;
+  solved: boolean;
+  user_id: number;
+  create_at: number;
+  update_at: number;
+};
+
 class MessageApi {
   sendMessage(message: string) {
-    return httpClient.post("/messages", { message, createdAt: Date.now() });
+    return httpClient.post<ComplianceInfo>("/specialist", { message });
   }
 
-  checkStatus(messageId: string) {
-    return httpClient.get<string>(`/messages/${messageId}`);
+  getInfo(messageId: string) {
+    return httpClient.get<ComplianceInfo>(`/specialist/${messageId}`);
   }
 }
 
