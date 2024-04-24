@@ -17,6 +17,10 @@ class MessageApi {
   getInfo(messageId: string) {
     return httpClient.get<ComplianceInfo>(`/specialist/${messageId}`);
   }
+
+  getUnsolved() {
+    return httpClient.get<ComplianceInfo[]>("/engineer/");
+  }
 }
 
 const messageApi = new MessageApi();
