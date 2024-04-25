@@ -3,7 +3,7 @@ import { me } from "../api/auth";
 import { Progress } from "@chakra-ui/react";
 
 type AuthContext = [any, (newAuth: any) => void];
-const authContext = createContext<AuthContext>([null, (newAuth: any) => {}]);
+const authContext = createContext<AuthContext>([null, () => {}]);
 
 type AuthContextProviderProps = {
   children: React.ReactNode;

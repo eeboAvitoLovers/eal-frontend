@@ -3,6 +3,7 @@ import ComplianceFormPage from "./pages/ComplianceFormPage";
 import CheckStatusPage from "./pages/CheckStatusPage";
 import AuthPage from "./pages/AuthPage";
 import Protected from "./components/Protected";
+import MessagesPage from "./pages/Messages";
 
 const routes = createBrowserRouter([
   {
@@ -10,6 +11,14 @@ const routes = createBrowserRouter([
     element: (
       <Protected>
         <ComplianceFormPage />
+      </Protected>
+    ),
+  },
+  {
+    path: "/unsolved",
+    element: (
+      <Protected>
+        <MessagesPage />
       </Protected>
     ),
   },

@@ -1,4 +1,4 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Input } from "@chakra-ui/react";
 import { FC, FormEvent, useState } from "react";
 import messageApi, { ComplianceInfo } from "../api/messages";
 import { toast } from "../utils/toasts";
