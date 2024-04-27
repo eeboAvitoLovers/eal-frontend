@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import ComplianceFormPage from "./pages/ComplianceFormPage";
-import CheckStatusPage from "./pages/CheckStatusPage";
+import CreateTicketPage from "./pages/CreateTicketPage";
+import CheckTicketStatusPage from "./pages/CheckTicketStatusPage";
 import AuthPage from "./pages/AuthPage";
 import Protected from "./components/Protected";
 import MessagesPage from "./pages/Messages";
@@ -10,7 +10,7 @@ const routes = createBrowserRouter([
     path: "/",
     element: (
       <Protected>
-        <ComplianceFormPage />
+        <CreateTicketPage />
       </Protected>
     ),
   },
@@ -24,7 +24,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/check",
-    element: <CheckStatusPage />,
+    element: <CheckTicketStatusPage />,
   },
   {
     path: "/auth",

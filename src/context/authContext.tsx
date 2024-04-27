@@ -1,9 +1,9 @@
 import { FC, createContext, useContext, useEffect, useState } from "react";
-import { me } from "../api/auth";
+import authApi, { User } from "../api/auth";
 import { Progress } from "@chakra-ui/react";
 
-type AuthContext = [any, (newAuth: any) => void];
-const authContext = createContext<AuthContext>([null, () => {}]);
+type AuthContext = [User | undefined, (newAuth: User | undefined) => void];
+const authContext = createContext<AuthContext>([undefined, () => {}]);
 
 type AuthContextProviderProps = {
   children: React.ReactNode;
@@ -12,12 +12,13 @@ type AuthContextProviderProps = {
 export const AuthContextProvider: FC<AuthContextProviderProps> = ({
   children,
 }) => {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState<User>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    me()
+    authApi
+      .me()
       .then((res) => setAuth(res.data))
       .finally(() => setLoading(false));
   }, []);

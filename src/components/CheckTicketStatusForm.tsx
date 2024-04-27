@@ -1,22 +1,23 @@
 import { Box, Button, Input } from "@chakra-ui/react";
 import { FC, FormEvent, useState } from "react";
-import messageApi, { ComplianceInfo } from "../api/messages";
+import ticketApi, { Ticket } from "../api/tickets";
 import { toast } from "../utils/toasts";
-import MessageInfo from "./MessageInfo";
+import TicketDetails from "./TicketDetails";
 
-const CheckStatus: FC = () => {
-  const [messageId, setMessageId] = useState("");
-  const [info, setInfo] = useState<ComplianceInfo | null>(null);
+const CheckTicketStatusForm: FC = () => {
+  const [ticketId, setTicketId] = useState<number>();
+  const [ticket, setTicket] = useState<Ticket | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (!ticketId) return;
 
-    setInfo(null);
+    setTicket(null);
     setLoading(true);
-    messageApi
-      .getInfo(messageId)
-      .then((res) => setInfo(res.data))
+    ticketApi
+      .getTicketById(ticketId)
+      .then((res) => setTicket(res.data))
       .catch((e) => {
         console.error(e);
         toast({
@@ -37,17 +38,18 @@ const CheckStatus: FC = () => {
       onSubmit={handleSubmit}
     >
       <Input
-        value={messageId}
-        onChange={(e) => setMessageId(e.target.value)}
+        value={ticketId}
+        onChange={(e) => setTicketId(parseInt(e.target.value))}
+        type="number"
         placeholder="Номер обращения"
         required
       />
       <Button isLoading={loading} colorScheme="blue" type="submit">
         Проверить
       </Button>
-      {info && <MessageInfo messageInfo={info} />}
+      {ticket && <TicketDetails ticket={ticket} />}
     </Box>
   );
 };
 
-export default CheckStatus;
+export default CheckTicketStatusForm;

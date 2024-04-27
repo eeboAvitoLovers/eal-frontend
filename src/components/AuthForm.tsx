@@ -1,9 +1,9 @@
 import { FC, FormEvent, MouseEvent, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "../utils/toasts";
-import { login, register } from "../api/auth";
 import { Box, Button, Checkbox, Input, Link } from "@chakra-ui/react";
 import { useAuth } from "../context/authContext";
+import authApi from "../api/auth";
 
 const AuthForm: FC = () => {
   const [email, setEmail] = useState("");
@@ -27,8 +27,8 @@ const AuthForm: FC = () => {
     e.preventDefault();
     const promise =
       authType === "login"
-        ? login(email, password)
-        : register(email, password, isEngineer);
+        ? authApi.login(email, password)
+        : authApi.register(email, password, isEngineer);
 
     promise
       .then((response) => {

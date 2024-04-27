@@ -1,11 +1,11 @@
 import { FC } from "react";
 import CardPageLayout from "../components/CardPageLayout";
-import CheckStatus from "../components/CheckStatus";
+import CheckTicketStatusForm from "../components/CheckTicketStatusForm";
 
-const CheckStatusPage: FC = () => (
+const CheckTicketStatusPage: FC = () => (
   <CardPageLayout title="Проверить статус обращения">
-    <CheckStatus />
+    <CheckTicketStatusForm />
   </CardPageLayout>
 );
 
-export default CheckStatusPage;
+export default CheckTicketStatusPage;

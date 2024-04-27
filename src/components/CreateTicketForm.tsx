@@ -1,9 +1,9 @@
 import { Textarea, Button, Box, Text } from "@chakra-ui/react";
 import { FC, FormEvent, useState } from "react";
-import messageApi from "../api/messages";
+import ticketApi from "../api/tickets";
 import { toast } from "../utils/toasts";
 
-const ComplianceForm: FC = () => {
+const CreateTicketForm: FC = () => {
   const [message, setMessage] = useState("");
   const [createdMessageId, setCreatedMessageId] = useState<number>();
 
@@ -11,8 +11,8 @@ const ComplianceForm: FC = () => {
     e.preventDefault();
     setCreatedMessageId(undefined);
 
-    messageApi
-      .sendMessage(message)
+    ticketApi
+      .createTicket(message)
       .then((response) => {
         setMessage("");
         setCreatedMessageId(response.data.id);
@@ -55,4 +55,4 @@ const ComplianceForm: FC = () => {
   );
 };
 
-export default ComplianceForm;
+export default CreateTicketForm;

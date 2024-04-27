@@ -1,14 +1,33 @@
 import httpClient from "./httpClient";
 
-export const register = (
-  email: string,
-  password: string,
-  isEngineer: boolean
-) => httpClient.post("/register", { email, password, isEngineer });
+export type User = {
+  ID: number;
+  email: string;
+  is_engineer: boolean;
+};
 
-export const login = (email: string, password: string) =>
-  httpClient.post("/login", { email, password });
+class AuthApi {
+  register(email: string, password: string, is_engineer: boolean) {
+    return httpClient.post<User>("/register/", {
+      email,
+      password,
+      is_engineer,
+    });
+  }
 
-export const logout = () => httpClient.post("/logout");
+  login(email: string, password: string) {
+    return httpClient.post<User>("/login/", { email, password });
+  }
 
-export const me = () => httpClient.get("/me");
+  me() {
+    return httpClient.get<User>("/me/");
+  }
+
+  logOut() {
+    document.cookie = "";
+    return httpClient.post("/logout/");
+  }
+}
+
+const authApi = new AuthApi();
+export default authApi;

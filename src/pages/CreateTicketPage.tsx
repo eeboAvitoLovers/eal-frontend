@@ -1,11 +1,11 @@
 import { FC } from "react";
-import ComplianceForm from "../components/ComplianceForm";
+import CreateTicketForm from "../components/CreateTicketForm";
 import CardPageLayout from "../components/CardPageLayout";
 
-const ComplianceFormPage: FC = () => (
+const CreateTicketPage: FC = () => (
   <CardPageLayout title="Написать обращение">
-    <ComplianceForm />
+    <CreateTicketForm />
   </CardPageLayout>
 );
 
-export default ComplianceFormPage;
+export default CreateTicketPage;
