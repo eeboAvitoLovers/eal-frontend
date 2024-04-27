@@ -3,7 +3,7 @@ import CreateTicketPage from "./pages/CreateTicketPage";
 import CheckTicketStatusPage from "./pages/CheckTicketStatusPage";
 import AuthPage from "./pages/AuthPage";
 import Protected from "./components/Protected";
-import MessagesPage from "./pages/Messages";
+import TicketsPage from "./pages/TicketsPage";
 
 const routes = createBrowserRouter([
   {
@@ -15,10 +15,10 @@ const routes = createBrowserRouter([
     ),
   },
   {
-    path: "/unsolved",
+    path: "/tickets",
     element: (
       <Protected>
-        <MessagesPage />
+        <TicketsPage />
       </Protected>
     ),
   },

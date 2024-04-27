@@ -25,7 +25,7 @@ class AuthApi {
 
   logOut() {
     document.cookie = "";
-    return httpClient.post("/logout/");
+    return httpClient.post("/logout");
   }
 }
 

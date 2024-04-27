@@ -6,10 +6,10 @@ export type TicketStatus = (typeof ticketStatuses)[number];
 export type Ticket = {
   id: number;
   message: string;
-  user_id: TicketStatus;
+  user_id: number;
   create_at: number;
   update_at: number;
-  solved: number;
+  solved: TicketStatus;
 };
 
 class TicketApi {
@@ -22,9 +22,16 @@ class TicketApi {
   }
 
   getTicketsByStatus(status: TicketStatus, offset: number, limit: number) {
-    return httpClient.get<{ Messages: Ticket[]; Total: number }>(
+    return httpClient.get<{ messages: Ticket[]; total: number }>(
       `/ticket/?status=${status}&offset=${offset}&limit=${limit}`
     );
+  }
+
+  takeInWork(id: number, user_id: number) {
+    return httpClient.put(`/ticket/${id}`, {
+      status: "accepted",
+      specialist_id: user_id,
+    });
   }
 }
 

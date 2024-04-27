@@ -8,10 +8,10 @@ type TicketDetailsProps = {
 
 const TicketDetails: FC<TicketDetailsProps> = ({ ticket }) => {
   return (
-    <Stack gap="0.5rem">
-      <Text>Номер обращения: {ticket.id}</Text>
+    <Stack gap="0.5rem" maxW="100%">
+      <Text size="sm">ID {ticket.id}</Text>
       <Text>Статус обращения: {ticket.solved}</Text>
-      <Text noOfLines={1} isTruncated>
+      <Text textOverflow="ellipsis" overflow="hidden" isTruncated>
         Сообщение: {ticket.message}
       </Text>
       <Text>Дата создания: {new Date(ticket.create_at).toLocaleString()}</Text>

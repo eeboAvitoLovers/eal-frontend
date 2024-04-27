@@ -32,7 +32,7 @@ const Navigation: FC = () => {
             <Link as={RouterLink} to="/">
               Создать обращение
             </Link>
-            {!auth.is_engineer && (
+            {auth.is_engineer && (
               <>
                 <Link as={RouterLink} to="/tickets">
                   Все обращения

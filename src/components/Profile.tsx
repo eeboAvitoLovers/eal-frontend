@@ -9,7 +9,7 @@ const Profile = () => {
     authApi.logOut().then(() => setAuth(undefined));
   };
 
-  if (!auth) return null;
+  if (!auth) return <Text>Страница недосупна</Text>;
 
   return (
     <Stack gap="1rem">

@@ -11,7 +11,7 @@ const FullPageLayout: FC<FullPageLayoutProps> = ({ title, children }) => {
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
       <Navigation />
-      <Container py={4}>
+      <Container py={4} maxW="container.lg">
         <Heading size="lg" pb="1.5rem">
           {title}
         </Heading>
