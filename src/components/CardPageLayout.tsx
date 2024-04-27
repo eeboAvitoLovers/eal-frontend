@@ -15,9 +15,9 @@ type CardPageLayoutProps = {
 };
 
 const CardPageLayout: FC<CardPageLayoutProps> = ({ children, title }) => (
-  <Box p={4} minH="100vh" display="flex" flexDirection="column">
+  <Box minH="100vh" display="flex" flexDirection="column">
     <Navigation />
-    <Center flexDirection="column" flexGrow={1}>
+    <Center flexDirection="column" flexGrow={1} p={4}>
       <Card maxW="lg" w="100%">
         <CardHeader>
           <Heading size="md">{title}</Heading>
