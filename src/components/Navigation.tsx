@@ -40,6 +40,9 @@ const Navigation: FC = () => {
                 <Link as={RouterLink} to="/analytics">
                   Аналитика
                 </Link>
+                <Link as={RouterLink} to="/tickets/my">
+                  Обращения в работе
+                </Link>
               </>
             )}
           </>

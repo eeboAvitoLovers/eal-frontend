@@ -1,6 +1,12 @@
 import httpClient from "./httpClient";
 
-export const ticketStatuses = ["accepted", "solved"] as const;
+export const ticketStatuses = [
+  "in_queue",
+  "in_progress",
+  "solved",
+  "info_required",
+  "rejected",
+] as const;
 export type TicketStatus = (typeof ticketStatuses)[number];
 
 export type Ticket = {
@@ -22,16 +28,26 @@ class TicketApi {
   }
 
   getTicketsByStatus(status: TicketStatus, offset: number, limit: number) {
-    return httpClient.get<{ messages: Ticket[]; total: number }>(
-      `/ticket/?status=${status}&offset=${offset}&limit=${limit}`
+    return httpClient.get<{ messages: Ticket[] | null; total: number }>(
+      `/tickets?status=${status}&offset=${offset}&limit=${limit}`
     );
   }
 
   takeInWork(id: number, user_id: number) {
     return httpClient.put(`/ticket/${id}`, {
-      status: "accepted",
+      status: "in_queue",
       specialist_id: user_id,
     });
+  }
+
+  solveTicket(id: number) {
+    return httpClient.put(`/ticket/${id}`, { status: "solved" });
+  }
+
+  getTicketsBySpecialistId(id: number, offset: number, limit: number) {
+    return httpClient.get<{ messages: Ticket[] | null; total: number }>(
+      `/specialist/${id}/tickets?offset=${offset}&limit=${limit}`
+    );
   }
 }
 

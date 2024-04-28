@@ -9,7 +9,9 @@ type TicketDetailsProps = {
 const TicketDetails: FC<TicketDetailsProps> = ({ ticket }) => {
   return (
     <Stack gap="0.5rem" maxW="100%">
-      <Text size="sm">ID {ticket.id}</Text>
+      <Text fontSize="xs" fontWeight="bold">
+        ID {ticket.id}
+      </Text>
       <Text>Статус обращения: {ticket.solved}</Text>
       <Text textOverflow="ellipsis" overflow="hidden" isTruncated>
         Сообщение: {ticket.message}

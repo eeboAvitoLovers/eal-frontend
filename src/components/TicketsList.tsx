@@ -4,19 +4,11 @@ import ticketApi, {
   TicketStatus,
   ticketStatuses,
 } from "../api/tickets";
-import {
-  GridItem,
-  Progress,
-  Select,
-  SimpleGrid,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import { Select, Stack, Text } from "@chakra-ui/react";
 import { toast } from "../utils/toasts";
 import { useAuth } from "../context/authContext";
-import TicketCard from "./TicketCard";
 import { useNavigate } from "react-router-dom";
+import TicketListInternal from "./TicketsListInternal";
 
 const PAGE_SIZE = 10;
 
@@ -36,14 +28,12 @@ const TicketsList: FC = () => {
     if (hasNextPage) setOffset(offset + PAGE_SIZE);
   }, []);
 
-  const elementRef = useInfiniteScroll(loadMore);
-
   useEffect(() => {
     setLoading(true);
     ticketApi
       .getTicketsByStatus(status, offset, PAGE_SIZE)
       .then((res) => {
-        setTickets([...tickets, ...res.data.messages]);
+        setTickets([...tickets, ...(res.data.messages ?? [])]);
         setHasNextPage(res.data.total > offset);
       })
       .catch(() => {
@@ -64,10 +54,15 @@ const TicketsList: FC = () => {
       ticketApi
         .takeInWork(id, auth!.ID)
         .then(() => {
-          toast({ title: "Обращение взято в работу" });
+          toast({ title: "Обращение взято в работу", status: "success" });
           navigate("/my-tickets");
         })
-        .catch(() => toast({ title: "Не удалось взять обращение в работу" }));
+        .catch(() =>
+          toast({
+            title: "Не удалось взять обращение в работу",
+            status: "error",
+          })
+        );
     },
     [auth?.ID]
   );
@@ -88,19 +83,12 @@ const TicketsList: FC = () => {
           </option>
         ))}
       </Select>
-      {tickets.length === 0 ? (
-        <Text>Нет обращений</Text>
-      ) : (
-        <SimpleGrid columns={{ base: 1, md: 2 }} gap={4}>
-          {tickets.map((ticket) => (
-            <GridItem key={ticket.id}>
-              <TicketCard ticket={ticket} onTakeInWork={onTakeInWork} />
-            </GridItem>
-          ))}
-        </SimpleGrid>
-      )}
-      {loading && <Progress isIndeterminate colorScheme="green" />}
-      <div ref={elementRef}></div>
+      <TicketListInternal
+        tickets={tickets}
+        loading={loading}
+        onLoadMore={loadMore}
+        onTakeInWork={onTakeInWork}
+      />
     </Stack>
   );
 };
