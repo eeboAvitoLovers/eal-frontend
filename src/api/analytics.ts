@@ -10,6 +10,10 @@ export type AnalyticsData = {
     this_month: number;
     prev_month: number;
   };
+  metrics: {
+    date: string[];
+    percent: number[];
+  };
 };
 
 class AnalyticsApi {
