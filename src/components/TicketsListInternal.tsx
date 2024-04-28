@@ -23,7 +23,7 @@ const TicketListInternal: FC<TicketListInternalProps> = ({
 
   return (
     <>
-      {tickets.length === 0 ? (
+      {tickets.length === 0 && !loading ? (
         <Text>Нет обращений</Text>
       ) : (
         <SimpleGrid columns={{ base: 1, md: 2 }} gap={4}>

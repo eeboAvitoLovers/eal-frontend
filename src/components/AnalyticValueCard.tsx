@@ -7,12 +7,14 @@ type AnalyticValueCardProps = {
 };
 
 const AnalyticValueCard: FC<AnalyticValueCardProps> = ({ title, value }) => (
-  <Card>
+  <Card height="100%">
     <CardHeader>
       <Heading size="sm">{title}</Heading>
     </CardHeader>
     <CardBody>
-      <Text fontSize="xxx-large">{value ?? "-"}</Text>
+      <Text fontSize="xxx-large" fontWeight="light">
+        {value ?? "-"}
+      </Text>
     </CardBody>
   </Card>
 );

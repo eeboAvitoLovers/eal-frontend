@@ -27,17 +27,17 @@ const Analytics: FC = () => {
   if (!analytics) return <Text>Не удалось загрузить аналитику</Text>;
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={4}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} gap={4}>
       <GridItem>
         <AnalyticValueCard
-          title="Среднее время решения обращений"
-          value={analytics.avg_time.accepted_solved}
+          title="Среднее время решения обращений (минут)"
+          value={analytics.avg_time.accepted_solved / 60_000}
         />
       </GridItem>
       <GridItem>
         <AnalyticValueCard
-          title=" Среднее время до начала работы над обращением"
-          value={analytics.avg_time.accepted_in_progress}
+          title=" Среднее время до начала работы над обращением (минут)"
+          value={analytics.avg_time.accepted_in_progress / 60_000}
         />
       </GridItem>
       <GridItem>
