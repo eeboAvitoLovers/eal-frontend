@@ -31,13 +31,13 @@ const Analytics: FC = () => {
       <GridItem>
         <AnalyticValueCard
           title="Среднее время решения обращений (минут)"
-          value={analytics.avg_time.accepted_solved / 60_000}
+          value={analytics.avg_time.accepted_solved / 60_000000000}
         />
       </GridItem>
       <GridItem>
         <AnalyticValueCard
           title=" Среднее время до начала работы над обращением (минут)"
-          value={analytics.avg_time.accepted_in_progress / 60_000}
+          value={analytics.avg_time.accepted_in_progress / 60_000000000}
         />
       </GridItem>
       <GridItem>

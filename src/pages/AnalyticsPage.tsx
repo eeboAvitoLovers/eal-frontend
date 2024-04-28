@@ -5,11 +5,14 @@ import { useAuth } from "../context/authContext";
 
 const AnalyticsPage = () => {
   const [auth] = useAuth();
-  if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
     <FullPageLayout title="Аналитика">
-      <Analytics />
+      {!auth || !auth.is_engineer ? (
+        <Text>Страница недоступна</Text>
+      ) : (
+        <Analytics />
+      )}
     </FullPageLayout>
   );
 };

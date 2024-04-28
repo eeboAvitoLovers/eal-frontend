@@ -7,11 +7,13 @@ import TicketsList from "../components/TicketsList";
 const MessagesPage: FC = () => {
   const [auth] = useAuth();
 
-  if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
-
   return (
     <FullPageLayout title="Обращения">
-      <TicketsList />
+      {!auth || !auth.is_engineer ? (
+        <Text>Страница недоступна</Text>
+      ) : (
+        <TicketsList />
+      )}
     </FullPageLayout>
   );
 };
