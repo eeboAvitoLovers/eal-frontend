@@ -33,10 +33,9 @@ class TicketApi {
     );
   }
 
-  takeInWork(id: number, user_id: number) {
+  takeInWork(id: number) {
     return httpClient.put(`/ticket/${id}`, {
       status: "in_queue",
-      specialist_id: user_id,
     });
   }
 

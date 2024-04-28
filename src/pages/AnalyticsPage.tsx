@@ -1,19 +1,17 @@
-import { FC } from "react";
-import { useAuth } from "../context/authContext";
 import { Text } from "@chakra-ui/react";
+import Analytics from "../components/Analytics";
 import FullPageLayout from "../components/FullPageLayout";
-import TicketsList from "../components/TicketsList";
+import { useAuth } from "../context/authContext";
 
-const MessagesPage: FC = () => {
+const AnalyticsPage = () => {
   const [auth] = useAuth();
-
   if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
-    <FullPageLayout title="Обращения">
-      <TicketsList />
+    <FullPageLayout title="Аналитика">
+      <Analytics />
     </FullPageLayout>
   );
 };
 
-export default MessagesPage;
+export default AnalyticsPage;

@@ -5,6 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import Protected from "./components/Protected";
 import TicketsPage from "./pages/TicketsPage";
 import TicketsListForSpecialistPage from "./pages/TicketsListForSpecialistPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 const routes = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
   {
     path: "/auth",
     element: <AuthPage />,
+  },
+  {
+    path: "/analytics",
+    element: <AnalyticsPage />,
   },
 ]);
 

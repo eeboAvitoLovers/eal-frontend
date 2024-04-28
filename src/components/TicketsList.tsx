@@ -49,25 +49,22 @@ const TicketsList: FC = () => {
 
   const [auth] = useAuth();
   const navigate = useNavigate();
-  const onTakeInWork = useCallback(
-    (id: number) => {
-      ticketApi
-        .takeInWork(id, auth!.ID)
-        .then(() => {
-          toast({ title: "Обращение взято в работу", status: "success" });
-          navigate("/my-tickets");
+  const onTakeInWork = useCallback((id: number) => {
+    ticketApi
+      .takeInWork(id)
+      .then(() => {
+        toast({ title: "Обращение взято в работу", status: "success" });
+        navigate("/my-tickets");
+      })
+      .catch(() =>
+        toast({
+          title: "Не удалось взять обращение в работу",
+          status: "error",
         })
-        .catch(() =>
-          toast({
-            title: "Не удалось взять обращение в работу",
-            status: "error",
-          })
-        );
-    },
-    [auth?.ID]
-  );
+      );
+  }, []);
 
-  if (!auth || !auth.is_engineer) return <Text>Страница недосупна</Text>;
+  if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
     <Stack gap="1rem">

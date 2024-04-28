@@ -59,7 +59,7 @@ const TicketsListForSpecialist: FC = () => {
       );
   }, []);
 
-  if (!auth || !auth.is_engineer) return <Text>Страница недосупна</Text>;
+  if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
     <TicketListInternal

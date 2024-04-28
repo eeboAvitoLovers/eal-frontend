@@ -7,7 +7,7 @@ import { Text } from "@chakra-ui/react";
 const TicketsListForSpecialistPage: FC = () => {
   const [auth] = useAuth();
 
-  if (!auth || !auth.is_engineer) return <Text>Страница недосупна</Text>;
+  if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
     <FullPageLayout title={`Обращения специалиста ${auth.email}`}>
