@@ -48,6 +48,10 @@ class TicketApi {
       `/specialist/${id}/tickets?offset=${offset}&limit=${limit}`
     );
   }
+
+  rejectTicket(id: number) {
+    return httpClient.put(`/ticket/${id}`, { status: "rejected" });
+  }
 }
 
 const ticketApi = new TicketApi();

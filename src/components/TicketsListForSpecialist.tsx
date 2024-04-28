@@ -59,6 +59,25 @@ const TicketsListForSpecialist: FC = () => {
       );
   }, []);
 
+  const onReject = useCallback((id: number) => {
+    ticketApi
+      .rejectTicket(id)
+      .then(() => {
+        toast({ title: "Обращение отклонено", status: "success" });
+        setTickets(
+          tickets.map((ticket) =>
+            ticket.id === id ? { ...ticket, solved: "rejected" } : ticket
+          )
+        );
+      })
+      .catch(() =>
+        toast({
+          title: "Не удалось отклонить обращение",
+          status: "error",
+        })
+      );
+  }, []);
+
   if (!auth || !auth.is_engineer) return <Text>Страница недоступна</Text>;
 
   return (
@@ -67,6 +86,7 @@ const TicketsListForSpecialist: FC = () => {
       loading={loading}
       onLoadMore={loadMore}
       onResolve={onResolve}
+      onReject={onReject}
     />
   );
 };

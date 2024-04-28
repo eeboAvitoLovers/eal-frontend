@@ -10,6 +10,7 @@ type TicketListInternalProps = {
   loading: boolean;
   onResolve?: (id: number) => void;
   onTakeInWork?: (id: number) => void;
+  onReject?: (id: number) => void;
 };
 
 const TicketListInternal: FC<TicketListInternalProps> = ({
@@ -18,6 +19,7 @@ const TicketListInternal: FC<TicketListInternalProps> = ({
   onLoadMore,
   onResolve,
   onTakeInWork,
+  onReject,
 }) => {
   const elementRef = useInfiniteScroll(onLoadMore);
 
@@ -33,6 +35,7 @@ const TicketListInternal: FC<TicketListInternalProps> = ({
                 ticket={ticket}
                 onTakeInWork={onTakeInWork}
                 onResolve={onResolve}
+                onReject={onReject}
               />
             </GridItem>
           ))}

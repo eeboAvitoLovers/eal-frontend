@@ -8,6 +8,7 @@ import {
   Button,
   MenuList,
   MenuItem,
+  Image,
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
@@ -24,9 +25,15 @@ const Navigation: FC = () => {
       gap="1rem"
       justifyContent="space-between"
       shadow="md"
-      p={4}
+      p={3}
     >
-      <Heading size="sm" mr={2}>
+      <Heading size="sm" mr={2} display="flex" alignItems="center" gap={2}>
+        <Image
+          src="/logo.jpeg"
+          alt="Logo: A cat working in a technical support"
+          width="40px"
+          height="40px"
+        />
         EAL Support
       </Heading>
       <Flex alignItems="center" gap="1rem" flexWrap="wrap">

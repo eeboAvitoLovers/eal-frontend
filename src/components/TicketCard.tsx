@@ -7,12 +7,14 @@ interface TicketCardProps {
   ticket: Ticket;
   onTakeInWork?: (id: number) => void;
   onResolve?: (id: number) => void;
+  onReject?: (id: number) => void;
 }
 
 const TicketCard = memo(
-  ({ ticket, onTakeInWork, onResolve }: TicketCardProps) => {
+  ({ ticket, onTakeInWork, onResolve, onReject }: TicketCardProps) => {
     const canTakeInWork = ticket.solved === "in_queue" && onTakeInWork;
     const canResolve = ticket.solved !== "solved" && onResolve;
+    const canReject = ticket.solved === "in_progress" && onReject;
 
     return (
       <Card>
@@ -28,6 +30,11 @@ const TicketCard = memo(
           {canResolve && (
             <Button size="sm" onClick={() => onResolve(ticket.id)}>
               Решить
+            </Button>
+          )}
+          {canReject && (
+            <Button size="sm" onClick={() => onReject(ticket.id)}>
+              Отклонить
             </Button>
           )}
         </CardFooter>
